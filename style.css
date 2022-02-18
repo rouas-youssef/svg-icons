@@ -163,7 +163,21 @@ h4 {
     max-width: calc(100% - 120px);
     overflow-x: scroll;
     scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+
+.navigation .container-index::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Hide scrollbar for IE, Edge and Firefox */
 
 .index_page_container {
     display: flex;
