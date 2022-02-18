@@ -10,6 +10,11 @@ body {
 
  :root {
     --primary: #888;
+    --secondary: rgb(41, 73, 160);
+}
+
+svg {
+    cursor: pointer;
 }
 
 .search {
@@ -99,7 +104,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px rgb(173, 216, 230) solid;
+    /* border: 1px var(--secondary) solid; */
+    border: 1px #ecf0f6 solid;
+    /* background-color: #ecf0f6; */
     justify-content: space-around;
     /* width: 150px; */
     height: 150px;
@@ -109,6 +116,20 @@ body {
     padding: 10px;
     cursor: pointer;
     box-shadow: 0 0px 20px rgba(173, 216, 230, 0.1);
+}
+
+.item:hover,
+.item:active,
+.item:focus {
+    color: var(--secondary);
+    background-color: #ecf0f6;
+}
+
+.item:hover svg,
+.item:active svg,
+.item:focus svg {
+    color: var(--secondary);
+    fill: var(--secondary)
 }
 
 .item svg {
@@ -144,7 +165,7 @@ h4 {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px lightblue solid;
+    border: 1px var(--secondary) solid;
     border-radius: 5px;
     color: #555;
     cursor: pointer;
@@ -155,7 +176,7 @@ h4 {
 }
 
 .button.active {
-    background-color: #add8e6;
+    background-color: var(--secondary);
     color: white;
 }
 
@@ -190,14 +211,41 @@ h4 {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    padding: 20px;
+    padding: 20px 20px 10px 20px;
     background-color: white;
-    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
+    width: 90%;
+    max-width: 700px;
 }
 
 .svg-container-text svg {
     width: 25px;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+}
+
+a.button-svg {
+    text-decoration: none;
+    color: white;
+    margin-top: 10px;
+    background-color: var(--secondary);
+    fill: white;
+    display: flex;
+    width: auto;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 5px;
+    width: 40%;
+    min-width: 140px;
+    cursor: pointer;
 }
 
 .svg-container-text .header {
@@ -212,7 +260,7 @@ textarea {
     /* border: #aaa 1px solid; */
     border: none;
     border-radius: 5px;
-    width: 80vw;
+    width: 100%;
     margin-top: 20px;
     line-height: 20px;
     overflow-y: scroll;

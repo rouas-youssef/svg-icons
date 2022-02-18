@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css?v=3">
+    <link rel="shortcut icon" href="https://rouasyoussef.com/assets/img/logo.png" type="image/x-icon">
 </head>
 
 <body>
@@ -88,117 +89,60 @@
                     d="M184 112l144 144-144 144" /><!-- Code injected by live-server -->
             </svg>
         </div>
-        <div class="svg-container-text d-none" id="svg-container-text">
-            <div class="header">
-                <h4>SVG Content Code</h4>
-                <span id="icon"></span>
-                <!-- <input type="color" value="#add8e6" onkeyup="(alert('ok'))" name="" id="color"> -->
-                <svg onclick="document.getElementById('svg-container-text').classList.add('d-none');" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
-                    <title>Close</title>
-                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="32" d="M368 368L144 144M368 144L144 368" /><!-- Code injected by live-server -->
-                </svg>
-            </div>
-            <textarea name="" placeholder="svg ....." id="svg" cols="30" rows="10"></textarea>
+    </div>
+
+    <div class="svg-container-text d-none" id="svg-container-text">
+        <div class="header">
+            <h4>SVG Content Code</h4>
+            <span id="icon"></span>
+            <!-- <input type="color" value="#add8e6" onkeyup="(alert('ok'))" name="" id="color"> -->
+            <svg onclick="document.getElementById('svg-container-text').classList.add('d-none');" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                <title>Close</title>
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"
+                    d="M368 368L144 144M368 144L144 368" /><!-- Code injected by live-server -->
+            </svg>
         </div>
+        <textarea name="" placeholder="svg ....." id="svg" cols="30" rows="10"></textarea>
+
+        <div class="buttons-container">
+            <a class="button-svg" id="download" href="path_to_file" download="proposed_file_name">
+                Download
+
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                    <path
+                        d="M11 5C11 4.44772 11.4477 4 12 4C12.5523 4 13 4.44772 13 5V12.1578L16.2428 8.91501L17.657 10.3292L12.0001 15.9861L6.34326 10.3292L7.75748 8.91501L11 12.1575V5Z"
+                        fill="currentColor">
+                    </path>
+
+                    <path d="M4 14H6V18H18V14H20V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V14Z"
+                        fill="currentColor">
+                    </path>
+                </svg>
+            </a>
+            <a onclick="copy_svg()" class="button-svg">
+                Copy
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                    <title>Copy
+                    </title>
+                    <rect x="128" y="128" width="336" height="336" rx="57" ry="57" fill="none" stroke="currentColor"
+                        stroke-linejoin="round" stroke-width="32">
+                    </rect>
+                    <path
+                        d="M383.5 128l.5-24a56.16 56.16 0 00-56-56H112a64.19 64.19 0 00-64 64v216a56.16 56.16 0 0056 56h24"
+                        fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="32">
+                    </path>
+                </svg>
+            </a>
+        </div>
+
+
     </div>
     <!-- <script id="data" type="application/json" src="./icons.json"></script> -->
-    <script>
-        let max_items = Math.floor(window.innerWidth / 145 * 5);
-        let data = [];
-        let search_items = []
-        let page_index = 1;
-        let url_str = location.href;
-        let container_index = document.querySelector("#container-index")
-        let url = new URL(url_str);
-        let search_params = url.searchParams;
-        page_index = (search_params.get('id') && search_params.get('id') > 0) ? search_params.get('id') : 1;
-        // console.log(page_index)
-        get_data();
-
-        async function search_elements() {
-            page_index = 1
-            var x = "";
-            let search_text = document.getElementById('search').value;
-            search_items = data.filter(i => (i.name) ? i.name.toLowerCase().includes(search_text.toLowerCase()) : console.log())
-            print_data(search_items)
-        }
-
-
-        function get_data() {
-            fetch('icons.json')
-                .then(response => response.json())
-                .then(result => {
-                    data = result
-                    print_data(data)
-                })
-        }
-
-        async function print_data(items) {
-
-            var html = ""
-            await Promise.all(items.map(async(element, i) => {
-                if (i >= max_items * (page_index - 1) && i < max_items * page_index)
-                    await fetch(`${element.url}`)
-                    .then(response => response.text())
-                    .then(result => {
-
-                        html += `<div id="svg_${i}" onclick="get_content_svg('svg_${i}')" class="item">` +
-                            // `<img class="img" src='icons/${element.url}' alt="" srcset="">` +
-                            result +
-                            `<h4>${element.name}</h4>` +
-                            "</div> "
-                    });
-            }));
-            var index_html = ""
-            document.getElementById("container").innerHTML = html;
-            for (i = 1; i <= items.length / max_items; i++) {
-                index_html += `<div onclick="set_page_index(${i})" class="number button ${i == page_index ? 'active' : ''}">${i}</div>`
-            }
-            document.getElementById("index_page_container").innerHTML = index_html;
-            let next = document.querySelector(".next")
-            let back = document.querySelector(".back")
-            if (container_index.scrollWidth > 0) {
-
-                next.classList.remove('d-none');
-                back.classList.remove('d-none')
-            } else {
-                next.classList.add('d-none');
-                back.classList.add('d-none')
-            }
-        }
-
-        function set_page_index(i) {
-            page_index = i;
-            if (search_items.length > 0)
-                print_data(search_items)
-            else
-                print_data(data)
-        }
-
-        function get_content_svg(id) {
-            let svg = document.getElementById(id).childNodes[0].outerHTML;
-            // svg = svg.split("script")[0];
-            svg = svg.split('<').join("\n<");
-            console.log(svg)
-            document.getElementById("svg").value = svg;
-            document.getElementById("svg-container-text").classList.remove('d-none');
-            document.getElementById("icon").innerHTML = svg
-        }
-
-        function change_color() {
-            let color = document.getElementById("color").value;
-            document.body.style.setProperty('--primary', color);
-        }
-
-        function next_page() {
-            container_index.scrollTo(container_index.scrollLeft + window.innerWidth / 2, 0)
-        }
-
-        function back_page() {
-            container_index.scrollTo(container_index.scrollLeft - window.innerWidth / 2, 0)
-        }
-    </script>
+    <script src="./script.js"></script>
 </body>
 
 </html>
