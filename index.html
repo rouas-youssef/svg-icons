@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css?v=1">
+</head>
+
+<body>
+    <div class="search">
+
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+            <path
+                d="M2 5.99519C2 5.44556 2.44556 5 2.99519 5H11.0048C11.5544 5 12 5.44556 12 5.99519C12 6.54482 11.5544 6.99039 11.0048 6.99039H2.99519C2.44556 6.99039 2 6.54482 2 5.99519Z"
+                fill="currentColor">
+            </path>
+
+            <path
+                d="M2 11.9998C2 11.4501 2.44556 11.0046 2.99519 11.0046H21.0048C21.5544 11.0046 22 11.4501 22 11.9998C22 12.5494 21.5544 12.9949 21.0048 12.9949H2.99519C2.44556 12.9949 2 12.5494 2 11.9998Z"
+                fill="currentColor">
+            </path>
+
+            <path
+                d="M2.99519 17.0096C2.44556 17.0096 2 17.4552 2 18.0048C2 18.5544 2.44556 19 2.99519 19H15.0048C15.5544 19 16 18.5544 16 18.0048C16 17.4552 15.5544 17.0096 15.0048 17.0096H2.99519Z"
+                fill="currentColor">
+            </path>
+        </svg>
+        <div class="search-input">
+
+            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                <title>Search Circle
+                </title>
+                <path
+                    d="M256 64C150.13 64 64 150.13 64 256s86.13 192 192 192 192-86.13 192-192S361.87 64 256 64zm91.31 283.31a16 16 0 01-22.62 0l-42.84-42.83a88.08 88.08 0 1122.63-22.63l42.83 42.84a16 16 0 010 22.62z">
+                </path>
+                <circle cx="232" cy="232" r="56">
+                </circle>
+            </svg>
+            <input type="text" id="search" onkeyup="search_elements()" placeholder="search..." name="" id="">
+        </div>
+        <input type="color" onchange="change_color()" name="" value="#808080" id="color">
+        <div class="button-color" onclick="document.getElementById('color').click()">
+
+
+            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                <title>Color Palette
+                </title>
+                <path
+                    d="M430.11 347.9c-6.6-6.1-16.3-7.6-24.6-9-11.5-1.9-15.9-4-22.6-10-14.3-12.7-14.3-31.1 0-43.8l30.3-26.9c46.4-41 46.4-108.2 0-149.2-34.2-30.1-80.1-45-127.8-45-55.7 0-113.9 20.3-158.8 60.1-83.5 73.8-83.5 194.7 0 268.5 41.5 36.7 97.5 55 152.9 55.4h1.7c55.4 0 110-17.9 148.8-52.4 14.4-12.7 11.99-36.6.1-47.7z"
+                    fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32">
+                </path>
+                <circle cx="144" cy="208" r="32">
+                </circle>
+                <circle cx="152" cy="311" r="32">
+                </circle>
+                <circle cx="224" cy="144" r="32">
+                </circle>
+                <circle cx="256" cy="367" r="48">
+                </circle>
+                <circle cx="328" cy="144" r="32">
+                </circle>
+            </svg>
+        </div>
+    </div>
+    <div class="container" id="container">
+
+    </div>
+    <div class="navigation">
+        <div class="back button " onclick="back_page()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                <title>Chevron Back</title>
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48"
+                    d="M328 112L184 256l144 144" /><!-- Code injected by live-server -->
+            </svg>
+        </div>
+        <div class="container-index" id="container-index">
+            <div class="index_page_container" id="index_page_container">
+            </div>
+        </div>
+        <div class="next button " onclick="next_page()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                <title>Chevron Forward</title>
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48"
+                    d="M184 112l144 144-144 144" /><!-- Code injected by live-server -->
+            </svg>
+        </div>
+        <div class="svg-container-text d-none" id="svg-container-text">
+            <div class="header">
+                <h4>SVG Content Code</h4>
+                <span id="icon"></span>
+                <!-- <input type="color" value="#add8e6" onkeyup="(alert('ok'))" name="" id="color"> -->
+                <svg onclick="document.getElementById('svg-container-text').classList.add('d-none');" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                    <title>Close</title>
+                    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                        stroke-width="32" d="M368 368L144 144M368 144L144 368" /><!-- Code injected by live-server -->
+                </svg>
+            </div>
+            <textarea name="" placeholder="svg ....." id="svg" cols="30" rows="10"></textarea>
+        </div>
+    </div>
+    <!-- <script id="data" type="application/json" src="./icons.json"></script> -->
+    <script>
+        let max_items = Math.floor(window.innerWidth / 145 * 5);
+        let data = [];
+        let search_items = []
+        let page_index = 1;
+        let url_str = location.href;
+        let container_index = document.querySelector("#container-index")
+        let url = new URL(url_str);
+        let search_params = url.searchParams;
+        page_index = (search_params.get('id') && search_params.get('id') > 0) ? search_params.get('id') : 1;
+        // console.log(page_index)
+        get_data();
+
+        async function search_elements() {
+            page_index = 1
+            var x = "";
+            let search_text = document.getElementById('search').value;
+            search_items = data.filter(i => (i.name) ? i.name.toLowerCase().includes(search_text.toLowerCase()) : console.log())
+            print_data(search_items)
+        }
+
+
+        function get_data() {
+            fetch('icons.json')
+                .then(response => response.json())
+                .then(result => {
+                    data = result
+                    print_data(data)
+                })
+        }
+
+        async function print_data(items) {
+
+            var html = ""
+            await Promise.all(items.map(async(element, i) => {
+                if (i >= max_items * (page_index - 1) && i < max_items * page_index)
+                    await fetch(`${element.url}`)
+                    .then(response => response.text())
+                    .then(result => {
+
+                        html += `<div id="svg_${i}" onclick="get_content_svg('svg_${i}')" class="item">` +
+                            // `<img class="img" src='icons/${element.url}' alt="" srcset="">` +
+                            result +
+                            `<h4>${element.name}</h4>` +
+                            "</div> "
+                    });
+            }));
+            var index_html = ""
+            document.getElementById("container").innerHTML = html;
+            for (i = 1; i <= items.length / max_items; i++) {
+                index_html += `<div onclick="set_page_index(${i})" class="number button ${i == page_index ? 'active' : ''}">${i}</div>`
+            }
+            document.getElementById("index_page_container").innerHTML = index_html;
+            let next = document.querySelector(".next")
+            let back = document.querySelector(".back")
+            if (container_index.scrollWidth > 0) {
+
+                next.classList.remove('d-none');
+                back.classList.remove('d-none')
+            } else {
+                next.classList.add('d-none');
+                back.classList.add('d-none')
+            }
+        }
+
+        function set_page_index(i) {
+            page_index = i;
+            if (search_items.length > 0)
+                print_data(search_items)
+            else
+                print_data(data)
+        }
+
+        function get_content_svg(id) {
+            let svg = document.getElementById(id).childNodes[0].outerHTML;
+            // svg = svg.split("script")[0];
+            svg = svg.split('<').join("\n<");
+            console.log(svg)
+            document.getElementById("svg").value = svg;
+            document.getElementById("svg-container-text").classList.remove('d-none');
+            document.getElementById("icon").innerHTML = svg
+        }
+
+        function change_color() {
+            let color = document.getElementById("color").value;
+            document.body.style.setProperty('--primary', color);
+        }
+
+        function next_page() {
+            container_index.scrollTo(container_index.scrollLeft + window.innerWidth / 2, 0)
+        }
+
+        function back_page() {
+            container_index.scrollTo(container_index.scrollLeft - window.innerWidth / 2, 0)
+        }
+    </script>
+</body>
+
+</html>
